@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("dstubked/ubuntu:non-compliant")
+        app = docker.build("ubuntu:non-compliant")
     }
     
     /*stage ('Aqua Scanner') {
@@ -21,7 +21,7 @@ node {
             sh "hostname"
             sh "echo $WORKSPACE"
             sh "echo $JENKINS_HOME"
-            sh "docker run -e BUILD_JOB_NAME=SCB-UC1-Not-Comply -e BUILD_URL=$BUILD_URL  -e BUILD_NUMBER=$BUILD_NUMBER --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:5.0.20154 scan --host http://a84d335a29f2a11eaa485025822714ea-958075476.ap-southeast-1.elb.amazonaws.com:8080 --local dstubked/ubuntu:non-compliant --no-verify --layer-vulnerabilities --html --user api --password AquaApiAccess > results.html"
+            sh "docker run -e BUILD_JOB_NAME=SCB-UC1-Not-Comply -e BUILD_URL=$BUILD_URL  -e BUILD_NUMBER=$BUILD_NUMBER --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:5.0.20154 scan --host http://a84d335a29f2a11eaa485025822714ea-958075476.ap-southeast-1.elb.amazonaws.com:8080 --local ubuntu:non-compliant --no-verify --layer-vulnerabilities --html --user api --password AquaApiAccess > results.html"
             archiveArtifacts 'results.html'
     }
     
