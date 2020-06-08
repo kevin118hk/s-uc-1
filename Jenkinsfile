@@ -14,7 +14,7 @@ node {
     }
     
     stage ('Aqua Scan') {
-        aqua customFlags: '----layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/ubuntu:non-compliant', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
+        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/ubuntu:non-compliant', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
     }
     /*stage('Aqua Scanner CLI') {
             sh "echo Hello from the shell"
