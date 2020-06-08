@@ -10,11 +10,11 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("dstubked/alpine:non-comply")
+        app = docker.build("dstubked/ubuntu:non-compliant")
     }
     
     stage ('Aqua Scan') {
-        aqua customFlags: '', hideBase: false, hostedImage: '', localImage: 'dstubked/alpine:non-comply', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
+        aqua customFlags: '', hideBase: false, hostedImage: '', localImage: 'dstubked/ubuntu:non-compliant', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
     }
     /*stage('Aqua Scanner CLI') {
             sh "echo Hello from the shell"
