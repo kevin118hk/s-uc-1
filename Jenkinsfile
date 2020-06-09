@@ -14,6 +14,7 @@ node {
     }
     
     stage ('Aqua Scanner') {
+        sh "pwd"
         aqua customFlags: '--layer-vulnerabilities --jsonfile results.json', hideBase: false, hostedImage: '', localImage: 'ubuntu:non-compliant', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
     }
     /*stage('Aqua Scanner') {
