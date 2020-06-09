@@ -13,10 +13,10 @@ node {
         app = docker.build("ubuntu:non-compliant")
     }
     
-    stage ('Aqua Scanner') {
+    /*stage ('Aqua Scanner') {
         sh "pwd"
         aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'ubuntu:non-compliant', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
-    }
+    }*/
      stage ('Aqua Scanner JSON') {
         sh "docker run -e BUILD_JOB_NAME=SCB-UC1-Not-Comply -e BUILD_URL=$BUILD_URL  -e BUILD_NUMBER=$BUILD_NUMBER --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:5.0.20154 scan --host http://a84d335a29f2a11eaa485025822714ea-958075476.ap-southeast-1.elb.amazonaws.com:8080 --local ubuntu:non-compliant --no-verify --layer-vulnerabilities --jsonfile results.json --user api --password AquaApiAccess"
     }
