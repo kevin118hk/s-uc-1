@@ -10,12 +10,12 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("orders-nginx:1")
+        app = docker.build("dstubked-docker.jfrog.io/orders-nginx:1")
     }
     
     stage ('Aqua Scanner') {
         sh "pwd"
-        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'orders-nginx:1', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
+        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked-docker.jfrog.io/orders-nginx:1', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
     }
      /*stage ('Aqua Scanner') {
         sh "docker run -e BUILD_JOB_NAME=SCB-UC1-Not-Comply -e BUILD_URL=$BUILD_URL  -e BUILD_NUMBER=$BUILD_NUMBER --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:5.0.20154 scan --host http://a84d335a29f2a11eaa485025822714ea-958075476.ap-southeast-1.elb.amazonaws.com:8080 --local ubuntu:non-compliant --no-verify --layer-vulnerabilities --jsonfile ./results.json --user api --password AquaApiAccess"
