@@ -14,6 +14,5 @@ node {
     }
     
     stage ('Aqua Scanner') {
-        sh "pwd"
         aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked-docker.jfrog.io/orders-nginx:1', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: false, registry: '', showNegligible: false
     }
