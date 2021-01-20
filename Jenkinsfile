@@ -14,14 +14,14 @@ node {
     }
     
     stage ('Aqua Scanner') {
-        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/orders-nginx:${env.BUILD_NUMBER}', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: false
+        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/orders-nginx:$BUILD_NUMBER', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: false
     }
     stage('Push into Prod Registry') {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            /* Push into prod namespace 
+            /* Push into prod namespace
+            app.push ("latest")
             sh "docker push dstubked-docker.jfrog.io/orders-nginx-prod:good" */
             app.push ("${env.BUILD_NUMBER}")
-            app.push ("latest")
         }
     }
 }
