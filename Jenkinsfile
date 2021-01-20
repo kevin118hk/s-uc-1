@@ -10,11 +10,11 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("dstubked/orders-nginx")
+        app = docker.build("dstubked/orders-nginx:${env.BUILD_NUMBER}")
     }
     
     stage ('Aqua Scanner') {
-        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/orders-nginx', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: false
+        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/orders-nginx:${env.BUILD_NUMBER}', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: false
     }
     stage('Push into Prod Registry') {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
