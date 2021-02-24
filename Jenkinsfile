@@ -14,8 +14,11 @@ node {
     }
     
     stage ('Aqua Scanner') {
-        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/orders-nginx:$BUILD_NUMBER', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: false
+        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: 'dstubked/orders-nginx:62', localImage: '', locationType: 'hosted', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: false
     }
+    /*stage ('Aqua Scanner') {
+        aqua customFlags: '--layer-vulnerabilities', hideBase: false, hostedImage: '', localImage: 'dstubked/orders-nginx:$BUILD_NUMBER', locationType: 'local', notCompliesCmd: '', onDisallowed: 'fail', policies: '', register: true, registry: 'Docker Hub', showNegligible: false
+    }*/
     stage('Push into Prod Registry') {
         docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
             /* Push into prod namespace
