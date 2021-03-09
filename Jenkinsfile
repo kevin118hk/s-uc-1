@@ -6,6 +6,11 @@ node {
 
         checkout scm
     }
+     stage('Scan Source Code') {
+        /* Clone repository to our workspace */
+
+        sh "echo 'Code Scan in Progress'"
+    }
 
     stage('Build image') {
         /* This builds the actual image */
