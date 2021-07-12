@@ -22,7 +22,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        app = docker.build("dstubked/orders-nginx:${env.BUILD_NUMBER}")
+        app = docker.build("dstubked/orders-nginx:${env.BUILD_NUMBER}" --privileged -v /var/run/docker.sock:/var/run/docker.sock)
     }
     
     stage ('Aqua Scanner') {
