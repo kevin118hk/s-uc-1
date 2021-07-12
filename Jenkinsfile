@@ -14,8 +14,7 @@ node {
 
     stage('Build image') {
         /* This builds the actual image */
-        sh "usermod -aG docker jenkins"
-        app = docker.build("dstubked/orders-nginx:${env.BUILD_NUMBER}").withRun('--privileged -v /var/run/docker.sock:/var/run/docker.sock')
+        app = docker.build("dstubked/orders-nginx:${env.BUILD_NUMBER}")
     }
     
     stage ('Aqua Scanner') {
