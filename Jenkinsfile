@@ -1,5 +1,5 @@
 node {
-    agent (kubernetes)
+    agent any
     
     def app
 
