@@ -1,11 +1,6 @@
 node {
     def app
-
-    stage('Initialize'){
-        def dockerHome = tool 'docker'
-        env.PATH = "${dockerHome}/bin:${env.PATH}"
-      
-    }    
+    agent (kubernetes)
     
     stage('Clone repository') {
         /* Clone repository to our workspace */
