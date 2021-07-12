@@ -1,4 +1,5 @@
-node {
+node(kubernetes) {
+    
     def app
 
     stage('Clone repository') {
