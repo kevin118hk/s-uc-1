@@ -14,7 +14,7 @@ node {
 
     stage('Build image') {
         /* This builds the actual image */
-        sh "RUN usermod -aG docker jenkins"
+        sh "usermod -aG docker jenkins"
         app = docker.build("dstubked/orders-nginx:${env.BUILD_NUMBER}").withRun('--privileged -v /var/run/docker.sock:/var/run/docker.sock')
     }
     
