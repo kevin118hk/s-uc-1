@@ -1,4 +1,5 @@
-node(kubernetes) {
+node {
+    agent (kubernetes)
     
     def app
 
